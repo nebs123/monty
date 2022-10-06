@@ -46,6 +46,7 @@ void nop_op(stack_t **stack, unsigned int line_number);
 void sub_op(stack_t **stack, unsigned int line_number);
 void div_op(stack_t **stack, unsigned int line_number);
 void mul_op(stack_t **stack, unsigned int line_number);
+void mod_op(stack_t **stack, unsigned int line_number);
 stack_t *pop(stack_t **stack);
 stack_t *push(stack_t **stack, int val);
 void free_stack(stack_t **stack);

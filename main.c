@@ -62,15 +62,16 @@ void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 		{"sub", sub_op},
 		{"div", div_op},
 		{"mul", mul_op},
+		{"mod", mod_op},
 	};
 	unsigned int i;
 
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < 11; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 10)
+	if (i < 11)
 		(*instructions[i].f)(stack, line);
 	else
 	{
