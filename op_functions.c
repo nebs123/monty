@@ -58,6 +58,7 @@ void pall_op(stack_t **stack, unsigned int line_number)
 void pint_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
+
 	if (head)
 	{
 		printf("%d\n", head->n);

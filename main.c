@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		if (buf[read - 1] == '\n')
 			buf[read - 1] = '\0';
 		opcode = strtok(buf, " ");
-		if (opcode)
+		if (opcode && *opcode != '#')
 			call_opcode(opcode, &stack, len);
 	}
 	free(buf);
@@ -56,16 +56,21 @@ void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 		{"pall", pall_op},
 		{"pint", pint_op},
 		{"pop", pop_op},
-		{"swap", swap_op}
+		{"swap", swap_op},
+		{"add", add_op},
+		{"nop", nop_op},
+		{"sub", sub_op},
+		{"div", div_op},
+		{"mul", mul_op},
 	};
 	unsigned int i;
 
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < 10; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 5)
+	if (i < 10)
 		(*instructions[i].f)(stack, line);
 	else
 	{
