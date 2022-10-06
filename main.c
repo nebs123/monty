@@ -32,28 +32,41 @@ int main(int argc, char *argv[])
 	{
 		if (buf[read - 1] == '\n')
 			buf[read - 1] = '\0';
-		opcode =  strtok(buf, " ");
-		printf("opcode: %s\n", opcode);
-		call_opcode(opcode, &stack, len);
+		opcode = strtok(buf, " ");
+		if (opcode)
+			call_opcode(opcode, &stack, len);
 	}
 	free(buf);
+	free_stack(&stack);
+	fclose(file);
 	return (0);
 }
 
+/**
+ * call_opcode - gets the opcode and makes the appropriate op_function call
+ * @opcode: opcode string
+ * @stack: the pointer to the pointer to the stack for operations
+ * @line: line number for the instruction read
+ * Return: void (no return)
+ */
 void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 {
 	instruction_t instructions[] = {
 		{"push", push_op},
+		{"pall", pall_op}
 	};
 	unsigned int i;
 
-	for (i = 0; i < 1; i++)
+	for (i = 0; i < 2; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 1)
+	if (i < 2)
 		(*instructions[i].f)(stack, line);
 	else
+	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
+		exit(EXIT_FAILURE);
+	}
 }
