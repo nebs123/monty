@@ -63,15 +63,19 @@ void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 		{"div", div_op},
 		{"mul", mul_op},
 		{"mod", mod_op},
+		{"pchar", pchar_op},
+		{"pstr", pstr_op},
+		{"rotl", rotl_op},
+		{"rotr", rotr_op}
 	};
 	unsigned int i;
 
-	for (i = 0; i < 11; i++)
+	for (i = 0; i < 15; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 11)
+	if (i < 15)
 		(*instructions[i].f)(stack, line);
 	else
 	{

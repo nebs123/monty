@@ -47,7 +47,13 @@ void sub_op(stack_t **stack, unsigned int line_number);
 void div_op(stack_t **stack, unsigned int line_number);
 void mul_op(stack_t **stack, unsigned int line_number);
 void mod_op(stack_t **stack, unsigned int line_number);
+void pchar_op(stack_t **stack, unsigned int line_number);
+void pstr_op(stack_t **stack, unsigned int line_number);
+void rotl_op(stack_t **stack, unsigned int line_number);
+void rotr_op(stack_t **stack, unsigned int line_number);
 stack_t *pop(stack_t **stack);
+stack_t *pop_end(stack_t **stack);
 stack_t *push(stack_t **stack, int val);
+stack_t *enqueue(stack_t **stack, int val);
 void free_stack(stack_t **stack);
 #endif

@@ -73,3 +73,69 @@ void free_stack(stack_t **stack)
 		}
 	}
 }
+
+/**
+ * enqueue - creates a new element and inserts it at bottom of the stack/queue
+ * @stack: pointer to a pointer to the stack/queue
+ * @val: value to assign to stack/queue element
+ * Return: pointer to the newly created element
+ */
+stack_t *enqueue(stack_t **stack, int val)
+{
+	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *prev = NULL, *ptr = *stack;
+
+	if (!new_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	while (ptr)
+	{
+		prev = ptr;
+		ptr = ptr->next;
+	}
+
+	new_node->n = val;
+	new_node->next = NULL;
+	new_node->prev = prev;
+
+	if (prev)
+	{
+		prev->next = new_node;
+	} else
+	{
+		*stack = new_node;
+	}
+
+	return (new_node);
+}
+
+/**
+ * pop_end - pops the last element of stack
+ * @stack: pointer to a pointer to the stack/queue
+ * @val: value to assign to stack/queue element
+ * Return: pointer to the newly created element or null on failure
+ */
+stack_t *pop_end(stack_t **stack)
+{
+	stack_t *prev = NULL, *ptr = *stack;
+
+	while (ptr)
+	{
+		prev = ptr;
+		ptr = ptr->next;
+	}
+
+	if (prev)
+	{
+		if (prev->prev)
+			prev->prev->next = NULL;
+		else
+			*stack = NULL;
+		prev->prev = NULL;
+	}
+
+	return (prev);
+}
