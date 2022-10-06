@@ -1,12 +1,12 @@
 #include "monty.h"
 
+int stack_queue = 1;
 /**
  * main - main loop of the monty bytecode interpreter
  * @argc: number of command line args
  * @argv: command line args
  * Return: 0 on success, otherwise exits with failure code
  */
-
 int main(int argc, char *argv[])
 {
 	size_t nb;
@@ -66,16 +66,18 @@ void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 		{"pchar", pchar_op},
 		{"pstr", pstr_op},
 		{"rotl", rotl_op},
-		{"rotr", rotr_op}
+		{"rotr", rotr_op},
+		{"queue", queue_op},
+		{"stack", stack_op}
 	};
 	unsigned int i;
 
-	for (i = 0; i < 15; i++)
+	for (i = 0; i < 17; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 15)
+	if (i < 17)
 		(*instructions[i].f)(stack, line);
 	else
 	{

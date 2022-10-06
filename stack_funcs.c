@@ -115,7 +115,6 @@ stack_t *enqueue(stack_t **stack, int val)
 /**
  * pop_end - pops the last element of stack
  * @stack: pointer to a pointer to the stack/queue
- * @val: value to assign to stack/queue element
  * Return: pointer to the newly created element or null on failure
  */
 stack_t *pop_end(stack_t **stack)

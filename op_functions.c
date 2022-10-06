@@ -24,9 +24,14 @@ void push_op(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	ret = push(stack, atoi(param));
+
+	if (stack_queue)
+		ret = push(stack, atoi(param));
+	else
+		ret = enqueue(stack, atoi(param));
+
 	if (!ret)
-		fprintf(stderr, "Something went wrong in push");
+		fprintf(stderr, "Something went wrong in push or queue");
 }
 
 /**
