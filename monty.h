@@ -38,6 +38,9 @@ typedef struct instruction_s
 void call_opcode(char *opcode, stack_t **stack, unsigned int line);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);
+void pint_op(stack_t **stack, unsigned int line_number);
+void pop_op(stack_t **stack, unsigned int line_number);
+void swap_op(stack_t **stack, unsigned int line_number);
 stack_t *pop(stack_t **stack);
 stack_t *push(stack_t **stack, int val);
 void free_stack(stack_t **stack);

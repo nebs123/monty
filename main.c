@@ -53,16 +53,19 @@ void call_opcode(char *opcode, stack_t **stack, unsigned int line)
 {
 	instruction_t instructions[] = {
 		{"push", push_op},
-		{"pall", pall_op}
+		{"pall", pall_op},
+		{"pint", pint_op},
+		{"pop", pop_op},
+		{"swap", swap_op}
 	};
 	unsigned int i;
 
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 			break;
 	}
-	if (i < 2)
+	if (i < 5)
 		(*instructions[i].f)(stack, line);
 	else
 	{
